@@ -20,3 +20,25 @@ Route.on('/').render('welcome')
 
 Route
   .resource('posts','PostController')
+
+Route
+  .get('/users', () => {return 'List of APPs'})
+  .as('users.index')
+
+Route.get('/users', ({request}) => {
+  switch (request.format()) {
+    case 'json':
+      return [
+        {name: 'Charlie'},
+        {name: 'lele'}
+      ]
+    default:
+      return `
+        - Charlie
+        - Lele
+      `
+  }
+})
+.formats(['json'])
+
+Route.any('*', ({view}) => {return view.render('welcome')})
