@@ -18,20 +18,5 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-Route.get('/posts', "PostController.index")
-
-Route.post('/posts', () => {
-  return 'Post has been created';
-})
-
-Route.get('/posts/:id', ({params}) => {
-  return `You are watching id: ${params.id}`
-})
-
-Route.patch('/posts/:id',({params})=> {
-  return `Post ${params.id} has been updated.`
-})
-
-Route.delete('/posts/:id',({params})=> {
-  return `Post ${params.id} has been removed.`
-})
+Route
+  .resource('posts','PostController')
