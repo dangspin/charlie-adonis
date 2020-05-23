@@ -1,26 +1,17 @@
-<h1>{{pagett || "Untitled"}}</h1>
+@layout('layouts.main')
 
-<p>nihaonihao</p>
-<br>
+@section('header')
+@super
+  <h1>{{pagett || "Untitled"}}</h1>
+@endsection
 
-@if(user.name)
-{{user.name}}
-<br>
-@else
-Login / Signup
-<br>
-@endif
-
-
-@each(entity in entities)
-  <br>
-  <div class="">
-    <small>
-      {{$loop.index + 1}}
-      first: <i>{{$loop.first}}</i>
-      last: <i>{{$loop.last}}</i>
-      total: <i>{{$loop.total}}</i>
-    </small>
-    {{entity.title}}: {{entity.content}}
-  </div>
-@endeach
+@section('content')
+  @each(entity in entities)
+    <div class="">
+      <small>
+        {{$loop.index + 1}}.
+      </small>
+      {{entity.title}}: {{entity.content}}
+    </div>
+  @endeach
+@endsection
