@@ -6,12 +6,13 @@
 @endsection
 
 @section('content')
-  @each(entity in entities)
-    <div class="">
-      <small>
-        {{$loop.index + 1}}.
-      </small>
-      {{entity.title}}: {{entity.content}}
-    </div>
-  @endeach
+  @component('components.list', {
+    entities: entities,
+    border: true,
+    borderColor: 'red'
+  })
+    @slot('notes')
+      <small>Eat lots of Fruits and vegetables</small>
+    @endslot
+  @endcomponent
 @endsection
